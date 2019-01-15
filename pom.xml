@@ -17,55 +17,14 @@
         <maven.compiler.source>7</maven.compiler.source>
         <maven.compiler.target>7</maven.compiler.target>
 		<sonar-jacoco-listeners.version>1.4</sonar-jacoco-listeners.version>
-<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-
-<!-- Jacoco version to use -->
-
-<jacoco.version>0.7.2.201409121644</jacoco.version>
-<!-- Don't let Sonar execute tests. We will ask it to Maven 'sonar.dynamicAnalysis' is deprecated since version 4.3 and should no longer be used. -->
-
-<!-- <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis> -->
-
-<!-- The system property jacoco.outputDir needs to be override on the command line
-
-    with an absolute path if you want to merge results from all modules.
-
-    Example in a Jenkisn build where ${WORKSPACE} is defined and your project in the root directory of the workspace :
-
-    mvn clean install -Prun-its,coverage -Djacoco.outputDir=${WORKSPACE}/target
-
-    Note that unfortunately using the following does not work because of
-
-    http://jira.codehaus.org/browse/SONAR-3427:
-
-<jacoco.outputDir>${session.executionRootDirectory}/target/</jacoco.outputDir>
-
--->
-
-<jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
-
-<!-- Jacoco output file for UTs -->
-
-<jacoco.out.ut.file>jacoco-ut.exec</jacoco.out.ut.file>
-
-<!-- Tells Sonar where the Jacoco coverage result file is located for Unit Tests -->
-
-<sonar.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.ut.file}</sonar.jacoco.reportPath>
-
-<!-- Jacoco output file for ITs -->
-
-<jacoco.out.it.file>jacoco-it.exec</jacoco.out.it.file>
-
-<!-- Tells Sonar where the Jacoco coverage result file is located for Integration Tests -->
-
-<sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
-
-<!-- <sonar.junit.reportsPath>${project.build.directory}/surefire-reports/</sonar.junit.reportsPath> -->
-
-<!-- <sonar.tests>src/test/java</sonar.tests> -->
-
-<!-- === END of Sonar/Reporting settings === -->
-    </properties>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<jacoco.version>0.7.2.201409121644</jacoco.version>
+		<jacoco.outputDir>${project.basedir}</jacoco.outputDir>
+		<jacoco.out.ut.file>jacoco-ut.exec</jacoco.out.ut.file>
+		<sonar.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.ut.file}</sonar.jacoco.reportPath>
+		<jacoco.out.it.file>jacoco-it.exec</jacoco.out.it.file>
+		<sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
+	</properties>
     
     <dependencies>
         <dependency>
@@ -98,7 +57,6 @@
         <id>coverage</id>
         <build>
             <plugins>
-                
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -142,7 +100,7 @@
                         </properties>
                         <!-- Let's put failsafe reports with surefire to have access to tests 
                             failures/success reports in sonar -->
-                        <reportsDirectory>${project.build.directory}/surefire-reports
+                        <reportsDirectory>${project.basedir}/surefire-reports
                         </reportsDirectory>
                     </configuration>
                 </plugin>
@@ -246,16 +204,4 @@
         </build>
     </profile>
     </profiles>
-    <distributionManagement>
-        <repository>
-            <id>deployment</id>
-            <name>Internal Releases</name>
-            <url>http://198.11.242.187:8081/repository/maven-release-IBMempleados/</url>
-        </repository>
-        <snapshotRepository>
-            <id>deployment</id>
-            <name>Internal Snapshot Releases</name>
-            <url>http://198.11.242.187:8081/repository/maven-snapshots-IBMempleados/</url>
-        </snapshotRepository>
-</distributionManagement>
 </project>
