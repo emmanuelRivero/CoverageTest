@@ -93,7 +93,7 @@
         </dependency>
 
     </dependencies>
-
+<profiles>
     <profile>
         <id>coverage</id>
         <build>
@@ -244,7 +244,7 @@
             </plugins>
         </build>
     </profile>
-    
+    </profiles>
     <distributionManagement>
         <repository>
             <id>deployment</id>
