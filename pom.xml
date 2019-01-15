@@ -19,8 +19,8 @@
         <maven.compiler.target>7</maven.compiler.target>
 		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.jacoco.reportPath>${projectRoot}/target/jacoco.exec</sonar.jacoco.reportPath>
-		<sonar.jacoco.itReportPath>${projectRoot}/target/jacoco-it.exec</sonar.jacoco.itReportPath>
+		<sonar.jacoco.reportPath>${project.root}/target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.jacoco.itReportPath>${project.root}/target/jacoco-it.exec</sonar.jacoco.itReportPath>
 		<sonar.language>java</sonar.language>
 	</properties>
     
